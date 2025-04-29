@@ -3,20 +3,27 @@
 
 # 1. 기본적인 기능: ls(v), cd(v), pwd(v), mkdir(v), rm
 # 2. 서버에서 작동할 명령어 작성
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
 import argparse, sys
 import time
+from modules.my_addon import addon
+from modules.my_install import installer
 
 from modules.my_changedir import changeDir
 from modules.my_changedir import startShell
 from modules.my_pwd import *
 from modules.my_screenClear import screenClear
 
+
 from modules.my_listsegment import listSegment
 from modules.my_mkdir import makeDirectory
 from modules.my_remove import removeDir
 
+
+
 def get_arguments():
-    parser = argparse.ArgumentParser()
+    # parser = argparse.ArgumentParser()
 
 
     argv = sys.argv
@@ -50,21 +57,22 @@ def printIssue():
 
 def main():
     startShell()
-    nowPosition = nowDir()
-    
     while True:
+        nowPosition = nowDir()
         operator = operand = option = " "
-
-        command = input("[" + str(nowPosition) + "] > ").split()
         
+        print("[" + str(nowPosition) + "] >", end = ' ', flush=True)
+        
+        command = sys.stdin.readline().rstrip().split()
+
+        if len(command) == 0:
+            operator = " "
         if len(command) >= 1 :
             operator = command[0]
         if len(command) > 1 :
             operand = command[1] 
         if len(command) > 2 :
             option = command[2]
-
-        print(operator, operand, option)
 
         if operator == "종료" or operator == "나가기":
             print("\n안녕히 가세요\n")
@@ -109,15 +117,18 @@ def main():
                 else:
                     rmdir.execute()
             case ' ':
-                print()
-            case default:
-                print(operator + "명령을 찾을 수 없습니다.")
-
-
+                print("", end='')
+            case '설치':
+                installer()
+                
+            case _:
+                addon(operator, operand, option)
+                
 
 if __name__ == '__main__':
     command = get_arguments()
     if(command == ""):
+        os.system('chcp 65001')
         screenClear()
         printFace()
         printIssue()
