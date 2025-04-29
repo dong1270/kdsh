@@ -16,6 +16,7 @@ from modules.my_pwd import *
 from modules.my_screenClear import screenClear
 
 
+# from modules.my_listsegment import listSegment
 from modules.my_listsegment import listSegment
 from modules.my_mkdir import makeDirectory
 from modules.my_remove import removeDir
@@ -119,8 +120,7 @@ def main():
             case ' ':
                 print("", end='')
             case '설치':
-                installer()
-                
+                installer()               
             case _:
                 addon(operator, operand, option)
                 

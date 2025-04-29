@@ -1,5 +1,4 @@
 import os
-from multipledispatch import dispatch
 
 def isHome(pathData):
     if pathData == '~':
