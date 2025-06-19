@@ -128,7 +128,7 @@ def main():
 if __name__ == '__main__':
     command = get_arguments()
     if(command == ""):
-        os.system('chcp 65001')
+#        os.system('chcp 65001')
         screenClear()
         printFace()
         printIssue()

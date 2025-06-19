@@ -1,8 +1,10 @@
 import subprocess
 
 def addon(operator = "", operand = "", option = ""):
-    filePath = "/Users/kangdongseong/myLib/kdsh/addon"
-    moduelPath = "/Users/kangdongseong/myLib/kdsh/kdsh_addon/"
+    # Home path 적기
+    HOMEPATH = ""
+    filePath = HOMEPATH + "/kdsh/addon"
+    moduelPath = HOMEPATH + "/kdsh/kdsh_addon/"
     cmd_list = open(filePath, mode='r')
     for cmd in cmd_list :
         if cmd == operator :
